@@ -1,0 +1,31 @@
+#footer {
+  width: 100%;
+  #footer1 {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  #footer2 {
+    width: 100%;
+    background-color: #D8E3EA;
+    border: 1px solid #426CBA;
+    #footer-container {
+      width: 70%;
+      margin: 0 auto;
+    }
+    .footer-banner {
+      width: 33%;
+      margin: 50px 0;
+      display: inline-block;
+      vertical-align: middle;
+      img {
+        width: 70%;
+        margin-left: 15%;
+      }
+    }
+  }
+  #footer3 {
+    text-align: center;
+  }
+}

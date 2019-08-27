@@ -1,0 +1,18 @@
+<aside>
+    {% for banner in banners["all"] %}
+        <div class="right-image">
+            <a href="{{ banner["link"] }}" target="_blank"><img src="{{ banner["img"] }}" alt=""></a>
+        </div>
+        <div class="right-caption">
+            <a href="{{ banner["link"] }}" target="_blank">{{ banner["caption"] }}</a>
+        </div>
+    {% endfor %}
+    {% for banner in banners["page"] %}
+        <div class="right-image">
+            <a href="{{ banner["link"] }}" target="_blank"><img src="{{ banner["img"] }}" alt=""></a>
+        </div>
+        <div class="right-caption">
+            <a href="{{ banner["link"] }}" target="_blank">{{ banner["caption"] }}</a>
+        </div>
+    {% endfor %}
+</aside>

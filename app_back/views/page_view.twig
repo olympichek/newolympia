@@ -1,0 +1,7 @@
+{% extends template %}
+
+{% block title %}{{ page["name_russian"] }}{% endblock %}
+
+{% block content %}
+    {{ page["text"] | raw}}
+{% endblock %}

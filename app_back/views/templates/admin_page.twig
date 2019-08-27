@@ -1,0 +1,11 @@
+{% extends "/templates/page.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/public/css/admin.css">
+{% endblock %}
+
+{% block top_menu %}
+    {{ parent() }}
+    {% include "/includes/top_menu_admin.twig" %}
+{% endblock %}

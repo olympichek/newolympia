@@ -1,0 +1,35 @@
+.smart-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.smart-link-warning {
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#page_editing {
+  background-color: #FAFAFA;
+  border: 1px solid #C4C4C4;
+  div {
+    margin: 5px;
+  }
+}
+.body-main {
+  .page_editing_item {
+    margin-right: 5px;
+  }
+}
+.body-page {
+  .page_editing_item {
+    margin-right: 20px;
+  }
+}
+#page_editing_status {
+  background-color: #FAFAFA;
+  border: 1px solid #C4C4C4;
+  div {
+    margin: 5px;
+  }
+}

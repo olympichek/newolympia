@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta content="{% block keywords %}{% endblock %}" name="keywords">
+    <meta content="{% block description %}{% endblock %}" name="description">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}
+        {% include "includes/head.twig" %}
+    {% endblock %}
+</head>
+<body class="body-main">
+<div id="wrapper">
+    <div id="header">
+        {% block header %}
+            {% include "includes/header.twig" %}
+        {% endblock %}
+    </div>
+    <div id="center">
+        <div id="left-menu" class="div-center">
+            {% block left_menu %}
+                {% include "includes/left_menu.twig" %}
+            {% endblock %}
+        </div>
+        <div id="left-column" class="div-center column">
+            <img id="left-column-top" src="/public/img/main/center01.gif" alt="">
+            <img id="left-column-center" src="/public/img/main/center02.gif" alt="">
+            <img id="left-column-bottom" src="/public/img/main/center03.gif" alt="">
+        </div>
+        <div id="main" class="div-center">
+            <div id="top-menu">
+                {% block top_menu %}
+                    {% include "includes/top_menu.twig" %}
+                {% endblock %}
+            </div>
+            <div id="content">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+        <div id="right-column" class="div-center column">
+            <img src="/public/img/main/center01.gif" alt="">
+            <img id="right-column-center" src="/public/img/main/center02.gif" alt="">
+            <img src="/public/img/main/center03.gif" alt="">
+        </div>
+        <div id="right-menu" class="div-center">
+            {% block right_menu %}
+                {% include "includes/right_menu.twig" %}
+            {% endblock %}
+        </div>
+    </div>
+    <div id="footer">
+        {% block footer %}
+            {% include "includes/footer.twig" %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

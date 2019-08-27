@@ -1,0 +1,45 @@
+{% extends template %}
+
+{% block title %}Редактирование страницы{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script src="/libs/ckfinder/ckfinder.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="page_editing">
+        <div>
+            <span class="page_editing_item" style="white-space: nowrap;">
+                <label for="name-russian-input">Название: </label>
+                <input type="text" id="name-russian-input" autocomplete="off" value="{{ page["name_russian"] | raw}}">
+            </span>
+            <span class="page_editing_item" style="white-space: nowrap;">
+                    <span>Название(англ.): </span>
+                    <input readonly type="text" value="{{ page["name"] }}">
+            </span>
+            <span class="page_editing_item">
+                <button id="page_data_submit">Сохранить</button>
+            </span>
+        </div>
+    </div>
+    <div id="toolbar-container"></div>
+    <div id="page_editing_status">
+        <div>
+            <span>Статус: </span>
+            <span id="page_editing_status_span" style="color: green;">сохранено</span>
+        </div>
+    </div>
+
+    <div id="editor">
+        {{ page["text"] | raw }}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+

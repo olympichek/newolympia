@@ -1,0 +1,9 @@
+{
+    "require": {
+        "php" : "^7.2",
+        "ext-mysqli": "*",
+        "ext-json": "*",
+        "twig/twig": "^2.0",
+        "ext-pdo": "*"
+    }
+}

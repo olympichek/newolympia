@@ -1,0 +1,54 @@
+<div class="full-item">
+    <div class="main-item-with-sub">
+        <div class="main-item">
+            <div class="main-id">{{ item[0]["id"] }}</div>
+            <input type="text" value="{{ item[0]["name_russian"]}}" class="main-name-input menu-input" readonly>
+            <select name="" disabled class="main-pages-list menu-select">
+                {% for page in pages %}
+                    <option value="{{ page["id"] }}"
+                            {% if page["id"] == item[0]["page_id"] %}selected{% endif %}>
+                        {{ page["name_russian"] }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button class="change-main-button menu-button">Изменить</button>
+            <button class="save-main-button menu-button">Сохранить</button>
+            <button class="delete-main-button menu-button">Удалить</button>
+        </div>
+        {% for sub_item in item %}
+            {% if loop.first != true %}
+                <div class="sub-item">
+                    <div class="sub-id">{{ sub_item["id"] }}</div>
+                    <input type="text" value="{{ sub_item["name_russian"]}}" class="sub-name-input menu-input" readonly>
+                    <select name="" disabled class="sub-pages-list menu-select">
+                        {% for page in pages %}
+                            <option value="{{ page["id"] }}" {% if page["id"] == sub_item["page_id"] %}selected{% endif %}>
+                                {{ page["name_russian"] }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <button class="change-sub-button menu-button">Изменить</button>
+                    <button class="save-sub-button menu-button">Сохранить</button>
+                    <button class="delete-sub-button menu-button">Удалить</button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="add-sub-item">
+        <button class="add-sub-button">Добавить подпункт</button>
+        <span> после </span>
+        <select name="" class="sub-items-list menu-select">
+            {% for sub_item in item %}
+                {% if loop.first == true %}
+                    <option value="0">
+                        {{ sub_item["name_russian"] }}
+                    </option>
+                {% else %}
+                    <option value="{{ sub_item["id"] }}" {% if loop.last %}selected{% endif %}>
+                        {{ sub_item["name_russian"] }}
+                    </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+</div>

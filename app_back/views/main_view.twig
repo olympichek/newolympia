@@ -1,0 +1,39 @@
+{% extends template %}
+
+{% block title %}ООО "Олимпия" - {{ page["name_russian"] }}{% endblock %}
+
+
+{% block content %}
+    {{ page["text"] | raw }}
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div id="footer1">
+            <img src="/public/img/main/footer01.gif" alt="">
+        </div>
+        <div id="footer2">
+            <div id="footer-container">
+                <div class="footer-banner">
+                    <a href="http://www.personal.zp.ua/">
+                        <img alt="" src="http://olympia.zp.ua/images/reklama/Alpina%20Personal.gif">
+                    </a>
+                </div>
+                <div class="footer-banner">
+                    <a href="http://daigest.com.ua">
+                        <img alt="" src="/public/img/bottom_images/daigest.jpg">
+                    </a>
+                </div>
+                <div class="footer-banner">
+                    <a href="http://www.personal.zp.ua/">
+                        <img alt="" src="http://www.artbanner.com.ua/bannermake/banners1012/2880894548725337.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="footer3">
+            <iframe src="http://kurs.com.ua/informer/regional2/15/742?color=blue" scrolling="no"  width="385" height="370" frameborder="0"></iframe>
+        </div>
+    </footer>
+{% endblock %}
+

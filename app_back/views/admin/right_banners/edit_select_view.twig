@@ -1,0 +1,7 @@
+<select id="add-main">
+    {% for banner in edit_banners_list %}
+        <option value="{{ banner["id"] }}" {% if loop.last %}selected{% endif %}>
+            {{ banner["caption"] }}
+        </option>
+    {% endfor %}
+</select>

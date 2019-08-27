@@ -1,0 +1,49 @@
+{% extends template %}
+
+{% block title %}Управление страницами{% endblock %}
+
+{% block content %}
+    <h2>Управление страницами</h2>
+    <hr>
+    <div>
+        <h3>Создание новой страницы</h3>
+        <div>Для создания новой страницы введите название страницы (на английском языке), например, contacts. Расширение .php или .html вводить НЕ нужно.</div>
+        <div>
+            <label for="create-page-name"><span>Название: </span></label>
+            <input type="text" id="create-page-name" autocomplete="off">
+        </div>
+        <span class="smart-link" id="page-create-href">Создать страницу</span>
+    </div>
+    <hr>
+    <div>
+        <h3>Редактирование страницы</h3>
+        <div>Для редактирования страницы, выберите страницу из списка ниже.</div>
+        <div>
+            <label for="pages-list-edit"><span>Страница: </span></label>
+            {% block pages_list_edit %}
+                <select id="pages-list-edit">
+                    {% for page in pages %}
+                        <option value="{{ page["name"] }}">{{ page["name_russian"] }}</option>
+                    {% endfor %}
+                </select>
+            {% endblock %}
+        </div>
+        <span class="smart-link" id="page-edit-href">Редактировать страницу</span>
+    </div>
+    <hr>
+    <div>
+        <h3>Удаление страницы</h3>
+        <div>Для удаления страницы, выберите страницу из списка ниже. Внимание: восстановить удаленную страницу будет невозможно.</div>
+        <div>
+            <label for="pages-list-delete"><span>Страница: </span></label>
+            {% block pages_list_delete %}
+                <select id="pages-list-delete">
+                    {% for page in pages_not_important %}
+                        <option value="{{ page["name"] }}">{{ page["name_russian"] }}</option>
+                    {% endfor %}
+                </select>
+            {% endblock %}
+        </div>
+        <span class="smart-link-warning" id="page-delete-href">Удалить страницу</span>
+    </div>
+{% endblock %}

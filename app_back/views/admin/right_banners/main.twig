@@ -1,0 +1,17 @@
+{% extends template %}
+
+{% block title %}Настройка баннеров (справа){% endblock %}
+
+{% block content %}
+    <p>Выберите страницу, на которой вы хотите редактировать баннера.</p>
+    <p><a href="/admin/right_banners/edit/all">Редактировать общие для всех страниц баннера</a></p>
+    <p>
+        <label for="banners-pages-list"><span>Страница: </span></label>
+        <select name="banners-pages-list" id="banners-pages-list">
+            {% for page in pages %}
+                <option value="{{ page["name"] }}">{{ page["name_russian"] }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p><span class="smart-link" id="banners-page-href">Редактировать баннера на выбранной странице</span></p>
+{% endblock %}

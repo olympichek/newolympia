@@ -1,0 +1,29 @@
+{% extends template %}
+
+{% block title %}Настройка меню{% endblock %}
+
+{% block content %}
+    <h2>Настройка меню</h2>
+    <input type="text" value="Название" class="menu-header menu-input" readonly>
+    <input type="text" value="Страница" class="menu-header menu-input" readonly>
+    <hr>
+    <div id="menu-editing">
+        {% for item in menu %}
+            <div>
+                {% include "admin/left_menu/item.twig" %}
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+    <div>
+        <button class="add-main-button">Добавить пункт</button>
+        <span> после </span>
+        <select name="" class="main-items-list menu-select">
+            {% for item in menu %}
+                <option value="{{ item[0]["id"] }}" {% if loop.last %}selected{% endif %}>
+                    {{ item[0]["name_russian"] }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+#admin-banners-table {
+  width: 100%;
+  td {
+    padding: 5px;
+  }
+  thead {
+    font-weight: bold;
+  }
+  input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .save-caption, .save-link, .save-image {
+    display: none;
+  }
+}

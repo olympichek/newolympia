@@ -1,0 +1,33 @@
+<nav>
+    {% autoescape false %}
+    {% for item in menu %}
+        <div class="left-menu-container">
+            {% block left_menu_admin %}{% endblock %}
+            <a href="{{ item[0]["href"] }}" class="left-menu-link">
+                <div class="left-menu-item">
+                    <div class="left-menu-img"><img src="/public/img/template/left_button01.png" alt=""></div>
+                    <div class="left-menu-text"><span>{{ item[0]["name_russian"] }}</span></div>
+                </div>
+            </a>
+            {% if item|length > 1 %}
+                <div class="left-menu-submenu">
+                    <ul>
+                        {% for sub_item in item %}
+                            {% if loop.first != true %}
+                                <li>
+                                    <a href="{{ sub_item["href"] }}">
+                                        <div>
+                                            <span>{{ sub_item["name_russian"] }}</span>
+                                        </div>
+                                        <img src="/public/img/template/left_button01.png" alt="">
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    {% endautoescape %}
+</nav>

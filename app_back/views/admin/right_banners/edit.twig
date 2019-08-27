@@ -1,0 +1,56 @@
+{% extends template %}
+
+{% block title %}Настройка баннеров (справа){% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script src="/libs/ckfinder/ckfinder.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% if(edit_banners_page == "all") %}
+        <h2>Настройка баннеров (справа), на всех страницах</h2>
+    {% else %}
+        <h2>Настройка баннеров (справа), на странице "{{ edit_banners_page }}"</h2>
+    {% endif %}
+    <table id="admin-banners-table" border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <td>Подпись</td>
+            <td>Ссылка</td>
+            <td>Баннер</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for banner in edit_banners_list %}
+            <tr id="image-{{ banner["id"] }}">
+                <td>
+                    <input type="text" value="{{ banner["caption"] }}" class="caption-input" readonly>
+                    <button class="change-caption">Изменить</button>
+                    <button class="save-caption">Сохранить</button>
+                </td>
+                <td>
+                    <input type="text" value="{{ banner["link"] }}" class="link-input" readonly>
+                    <button class="change-link">Изменить</button>
+                    <button class="save-link">Сохранить</button>
+                </td>
+                <td>
+                    <input type="text" value="{{ banner["img"] }}" class="image-input" readonly>
+                    <button class="change-image">Выбрать картинку</button>
+                    <button class="delete-image">Удалить баннер</button>
+                    <button class="save-image">Сохранить</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <button class="add-image">Добавить баннер</button>
+                <span> после </span>
+                {% include "admin/right_banners/edit_select_view.twig" %}
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

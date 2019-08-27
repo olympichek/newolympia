@@ -1,0 +1,15 @@
+{% extends template %}
+
+{% block title %}Вход в административную панель{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        <h2>Для входа введите логин и пароль администратора:</h2>
+        {% if(error == 1) %}
+            <p style="color:red;">Неверный логин и/или пароль!</p>
+        {% endif %}
+        <p><label for="login"><b>Логин: </b></label><input type="text" id="login" name="login"></p>
+        <p><label for="password"><b>Пароль: </b></label><input type="password" id="password" name="password"></p>
+        <input type="submit" value="Войти" name="submit" id="submit">
+    </form>
+{% endblock %}

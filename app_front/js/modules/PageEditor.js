@@ -47,11 +47,10 @@ export class PageEditor {
             "page_text": editorData,
             "token": token
         };
-        const requestJSON = encodeURIComponent(JSON.stringify(requestObj));
-        const request = "json=" + requestJSON;
+        const request = encodeURIComponent(JSON.stringify(requestObj));
         const xhr = new XMLHttpRequest();
         xhr.open("POST","/admin/page_admin/save",true);
-        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.setRequestHeader("Content-type","application/json");
         xhr.send(request);
         xhr.onload = this.setSaved;
     }

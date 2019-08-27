@@ -122,14 +122,13 @@ class Route {
             }
             if(self::$routes_list[$route_index]["method"] == "POST") {
                 foreach($_POST as $key => $value) {
-                    if($key == "json") {
-                        $json_obj = json_decode($_POST[$key], true);
-                        foreach($json_obj as $json_key => $json_value) {
-                            $request_args[$json_key] = $json_value;
-                        }
-                    }
-                    else {
-                        $request_args[$key] = $value;
+                    $request_args[$key] = $value;
+                }
+                if($_SERVER["CONTENT_TYPE"] ==  "application/json") {
+                    $postData = file_get_contents("php://input");
+                    $json_obj = json_decode($postData, true);
+                    foreach($json_obj as $json_key => $json_value) {
+                        $request_args[$json_key] = $json_value;
                     }
                 }
             }

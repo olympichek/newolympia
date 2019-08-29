@@ -1,5 +1,5 @@
 import Editor from "../../../libs/ckeditor5-build-custom";
-import {Cookie} from "./Cookie";
+import {Cookie} from "../services/Cookie";
 
 export class PageEditor {
 

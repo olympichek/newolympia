@@ -1,3 +1,3 @@
-import {register_routes} from "./config";
-const route = register_routes();
-route.start();
+import "./config";
+import {Route} from "./core/Route";
+Route.start();

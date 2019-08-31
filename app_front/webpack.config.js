@@ -10,14 +10,21 @@ module.exports = {
         filename: "bundle.js",
         chunkFilename: "[name].bundle.js"
     },
+    resolve: {
+        alias: {
+            Libs : path.resolve(__dirname, "../libs/")
+        }
+    },
     context: path.resolve(__dirname, "./"),
     module: {
-        rules: [{
-            test: /\.js$/,
-            include: path.resolve(__dirname, "./js"),
-            use: {
-                loader: "babel-loader"
+        rules: [
+            {
+                test: /\.js$/,
+                include: path.resolve(__dirname, "./js"),
+                use: {
+                    loader: "babel-loader"
+                }
             }
-        }]
+        ]
     }
 };

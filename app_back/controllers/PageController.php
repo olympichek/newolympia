@@ -42,4 +42,8 @@ class PageController extends Controller {
         $this->view->generate_page("401", "main", $this->data);
     }
 
+    function vue_test() {
+        $this->view->generate_page("vue-test", "page");
+    }
+
 }

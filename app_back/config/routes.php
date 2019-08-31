@@ -7,6 +7,8 @@ Route::get("/pages/{page_name}", "PageController@page");
 Route::get("/admin/auth", "admin\AuthController@index");
 Route::post("/admin/auth", "admin\AuthController@login");
 
+Route::get("/test/vue", "PageController@vue_test");
+
 Route::middleware("AdminMiddleware", [
 
     Route::get("/admin", "admin\MainController@index"),

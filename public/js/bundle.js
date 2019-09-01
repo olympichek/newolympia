@@ -196,34 +196,10 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./js/load.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./js/router/load.js");
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./js/core/Route.js":
-/*!**************************!*\
-  !*** ./js/core/Route.js ***!
-  \**************************/
-/*! exports provided: Route */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Route\", function() { return Route; });\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nclass Route {\n  static register(uri, class_method) {\n    const routes_list_length = Route.routes_list.length;\n    const class_method_parts = class_method.split(\"@\");\n    const class_name = class_method_parts[0];\n    const method_name = class_method_parts[1];\n    Route.routes_list[routes_list_length] = {\n      uri,\n      class_name,\n      method_name\n    };\n    return routes_list_length;\n  }\n\n  static explode(uri) {\n    if (uri[0] === \"/\") uri = uri.slice(1);\n    if (uri[uri.length - 1] === \"/\") uri = uri.slice(0, -1);\n    return uri.split(\"/\");\n  }\n\n  static validate(uri, route) {\n    let routes_array = Route.explode(uri);\n    let routes_check_array = Route.explode(route);\n    let check = 1;\n\n    if (routes_array.length !== routes_check_array.length) {\n      check = 0;\n    } else {\n      for (let i = 0; i < routes_array.length; i++) {\n        let var_regexp = /^[{][a-zA-Z0-9_]+[}]$/;\n        let route_regexp = /^[a-zA-Z0-9_]+$/;\n\n        if (var_regexp.test(routes_check_array[i])) {\n          if (!route_regexp.test(routes_array[i])) {\n            check = 0;\n          }\n        } else {\n          if (!route_regexp.test(routes_array[i])) {\n            check = 0;\n          } else if (!route_regexp.test(routes_check_array[i])) {\n            check = 0;\n          } else if (routes_array[i] !== routes_check_array[i]) {\n            check = 0;\n          }\n        }\n      }\n    }\n\n    if (uri === \"/\" && route === \"/\") {\n      check = 1;\n    }\n\n    if (route === \"*\") {\n      check = 1;\n    }\n\n    return check;\n  }\n\n  static loadingError() {\n    console.log(\"Error while loading module...\");\n  }\n\n  static async start() {\n    let request = window.location.pathname;\n    let route_index = [];\n    let count = 0;\n\n    for (let i = 0; i < Route.routes_list.length; i++) {\n      if (Route.validate(request, Route.routes_list[i][\"uri\"])) {\n        route_index[count] = i;\n        count++;\n      }\n    }\n\n    if (route_index.length !== 0) {\n      for (let i = 0; i < route_index.length; i++) {\n        let route = Route.routes_list[route_index[i]][\"uri\"];\n        let request = window.location.pathname;\n        let route_parts = Route.explode(route);\n        let request_parts = Route.explode(request);\n        let request_args = {};\n\n        for (let j = 0; j < route_parts.length; j++) {\n          let var_regexp = /^[{][a-zA-Z0-9_]+[}]$/;\n\n          if (var_regexp.test(route_parts[j])) {\n            let arg_name = route_parts[j].slice(1, -1);\n            request_args[arg_name] = request_parts[j];\n          }\n        }\n\n        const class_name = Route.routes_list[route_index[i]][\"class_name\"];\n        const method_name = Route.routes_list[route_index[i]][\"method_name\"];\n        const module = await __webpack_require__(\"./js/modules lazy recursive ^\\\\.\\\\/.*\\\\.js$\")(\"./\" + class_name + \".js\");\n        const obj = new module[class_name]();\n        obj[method_name](request_args);\n      }\n    } else {\n      Route.loadingError();\n    }\n  }\n\n}\n\n_defineProperty(Route, \"routes_list\", []);\n\n//# sourceURL=webpack:///./js/core/Route.js?");
-
-/***/ }),
-
-/***/ "./js/load.js":
-/*!********************!*\
-  !*** ./js/load.js ***!
-  \********************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ \"./js/routes.js\");\n/* harmony import */ var _core_Route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core/Route */ \"./js/core/Route.js\");\n\n\n_core_Route__WEBPACK_IMPORTED_MODULE_1__[\"Route\"].start();\n\n//# sourceURL=webpack:///./js/load.js?");
-
-/***/ }),
 
 /***/ "./js/modules lazy recursive ^\\.\\/.*\\.js$":
 /*!*******************************************************!*\
@@ -232,19 +208,54 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _rou
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var map = {\n\t\"./FilesUpload.js\": [\n\t\t\"./js/modules/FilesUpload.js\",\n\t\t9,\n\t\t4\n\t],\n\t\"./LeftMenu.js\": [\n\t\t\"./js/modules/LeftMenu.js\",\n\t\t7,\n\t\t5\n\t],\n\t\"./PageAdminLinks.js\": [\n\t\t\"./js/modules/PageAdminLinks.js\",\n\t\t9,\n\t\t2\n\t],\n\t\"./PageEditor.js\": [\n\t\t\"./js/modules/PageEditor.js\",\n\t\t9,\n\t\t1\n\t],\n\t\"./ResizeColumns.js\": [\n\t\t\"./js/modules/ResizeColumns.js\",\n\t\t9,\n\t\t6\n\t],\n\t\"./VueTest.js\": [\n\t\t\"./js/modules/VueTest.js\",\n\t\t9,\n\t\t0,\n\t\t3\n\t]\n};\nfunction webpackAsyncContext(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\treturn Promise.resolve().then(function() {\n\t\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\t\te.code = 'MODULE_NOT_FOUND';\n\t\t\tthrow e;\n\t\t});\n\t}\n\n\tvar ids = map[req], id = ids[0];\n\treturn Promise.all(ids.slice(2).map(__webpack_require__.e)).then(function() {\n\t\treturn __webpack_require__.t(id, ids[1])\n\t});\n}\nwebpackAsyncContext.keys = function webpackAsyncContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackAsyncContext.id = \"./js/modules lazy recursive ^\\\\.\\\\/.*\\\\.js$\";\nmodule.exports = webpackAsyncContext;\n\n//# sourceURL=webpack:///./js/modules_lazy_^\\.\\/.*\\.js$_namespace_object?");
+eval("var map = {\n\t\"./FilesUpload.js\": [\n\t\t\"./js/modules/FilesUpload.js\",\n\t\t5\n\t],\n\t\"./LeftMenu.js\": [\n\t\t\"./js/modules/LeftMenu.js\",\n\t\t0,\n\t\t1\n\t],\n\t\"./PageAdminLinks.js\": [\n\t\t\"./js/modules/PageAdminLinks.js\",\n\t\t4\n\t],\n\t\"./PageEditor.js\": [\n\t\t\"./js/modules/PageEditor.js\",\n\t\t3\n\t],\n\t\"./ResizeColumns.js\": [\n\t\t\"./js/modules/ResizeColumns.js\",\n\t\t6\n\t],\n\t\"./VueTest.js\": [\n\t\t\"./js/modules/VueTest.js\",\n\t\t0,\n\t\t2\n\t]\n};\nfunction webpackAsyncContext(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\treturn Promise.resolve().then(function() {\n\t\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\t\te.code = 'MODULE_NOT_FOUND';\n\t\t\tthrow e;\n\t\t});\n\t}\n\n\tvar ids = map[req], id = ids[0];\n\treturn Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {\n\t\treturn __webpack_require__(id);\n\t});\n}\nwebpackAsyncContext.keys = function webpackAsyncContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackAsyncContext.id = \"./js/modules lazy recursive ^\\\\.\\\\/.*\\\\.js$\";\nmodule.exports = webpackAsyncContext;\n\n//# sourceURL=webpack:///./js/modules_lazy_^\\.\\/.*\\.js$_namespace_object?");
 
 /***/ }),
 
-/***/ "./js/routes.js":
-/*!**********************!*\
-  !*** ./js/routes.js ***!
-  \**********************/
+/***/ "./js/router/Route.js":
+/*!****************************!*\
+  !*** ./js/router/Route.js ***!
+  \****************************/
+/*! exports provided: Route */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Route\", function() { return Route; });\n/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ \"./node_modules/@babel/runtime/helpers/defineProperty.js\");\n/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);\n\nclass Route {\n  static register(uri, class_method) {\n    const routes_list_length = Route.routes_list.length;\n    const class_method_parts = class_method.split(\"@\");\n    const class_name = class_method_parts[0];\n    const method_name = class_method_parts[1];\n    Route.routes_list[routes_list_length] = {\n      uri,\n      class_name,\n      method_name\n    };\n    return routes_list_length;\n  }\n\n  static explode(uri) {\n    if (uri[0] === \"/\") uri = uri.slice(1);\n    if (uri[uri.length - 1] === \"/\") uri = uri.slice(0, -1);\n    return uri.split(\"/\");\n  }\n\n  static validate(uri, route) {\n    let routes_array = Route.explode(uri);\n    let routes_check_array = Route.explode(route);\n    let check = 1;\n\n    if (routes_array.length !== routes_check_array.length) {\n      check = 0;\n    } else {\n      for (let i = 0; i < routes_array.length; i++) {\n        let var_regexp = /^[{][a-zA-Z0-9_]+[}]$/;\n        let route_regexp = /^[a-zA-Z0-9_]+$/;\n\n        if (var_regexp.test(routes_check_array[i])) {\n          if (!route_regexp.test(routes_array[i])) {\n            check = 0;\n          }\n        } else {\n          if (!route_regexp.test(routes_array[i])) {\n            check = 0;\n          } else if (!route_regexp.test(routes_check_array[i])) {\n            check = 0;\n          } else if (routes_array[i] !== routes_check_array[i]) {\n            check = 0;\n          }\n        }\n      }\n    }\n\n    if (uri === \"/\" && route === \"/\") {\n      check = 1;\n    }\n\n    if (route === \"*\") {\n      check = 1;\n    }\n\n    return check;\n  }\n\n  static loadingError() {\n    console.log(\"Error while loading module...\");\n  }\n\n  static async start() {\n    let request = window.location.pathname;\n    let route_index = [];\n    let count = 0;\n\n    for (let i = 0; i < Route.routes_list.length; i++) {\n      if (Route.validate(request, Route.routes_list[i][\"uri\"])) {\n        route_index[count] = i;\n        count++;\n      }\n    }\n\n    if (route_index.length !== 0) {\n      for (let i = 0; i < route_index.length; i++) {\n        let route = Route.routes_list[route_index[i]][\"uri\"];\n        let request = window.location.pathname;\n        let route_parts = Route.explode(route);\n        let request_parts = Route.explode(request);\n        let request_args = {};\n\n        for (let j = 0; j < route_parts.length; j++) {\n          let var_regexp = /^[{][a-zA-Z0-9_]+[}]$/;\n\n          if (var_regexp.test(route_parts[j])) {\n            let arg_name = route_parts[j].slice(1, -1);\n            request_args[arg_name] = request_parts[j];\n          }\n        }\n\n        const class_name = Route.routes_list[route_index[i]][\"class_name\"];\n        const method_name = Route.routes_list[route_index[i]][\"method_name\"];\n        const module = await __webpack_require__(\"./js/modules lazy recursive ^\\\\.\\\\/.*\\\\.js$\")(\"./\" + class_name + \".js\");\n        const obj = new module[class_name]();\n        obj[method_name](request_args);\n      }\n    } else {\n      Route.loadingError();\n    }\n  }\n\n}\n\n_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(Route, \"routes_list\", []);\n\n//# sourceURL=webpack:///./js/router/Route.js?");
+
+/***/ }),
+
+/***/ "./js/router/load.js":
+/*!***************************!*\
+  !*** ./js/router/load.js ***!
+  \***************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Route__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/Route */ \"./js/core/Route.js\");\n\n_core_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"*\", \"ResizeColumns@main\");\n_core_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/admin/files\", \"FilesUpload@load\");\n_core_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/admin/page_admin/index\", \"PageAdminLinks@main\");\n_core_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/admin/page_admin/edit/{page}\", \"PageEditor@load\");\n_core_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/test/vue\", \"VueTest@main\");\n\n//# sourceURL=webpack:///./js/routes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./routes */ \"./js/router/routes.js\");\n/* harmony import */ var _Route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Route */ \"./js/router/Route.js\");\n\n\n_Route__WEBPACK_IMPORTED_MODULE_1__[\"Route\"].start();\n\n//# sourceURL=webpack:///./js/router/load.js?");
+
+/***/ }),
+
+/***/ "./js/router/routes.js":
+/*!*****************************!*\
+  !*** ./js/router/routes.js ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Route__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Route */ \"./js/router/Route.js\");\n\n_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"*\", \"ResizeColumns@main\");\n_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/admin/files\", \"FilesUpload@load\");\n_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/admin/page_admin/index\", \"PageAdminLinks@main\");\n_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/admin/page_admin/edit/{page}\", \"PageEditor@load\");\n_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/admin/left_menu/index\", \"LeftMenu@main\");\n_Route__WEBPACK_IMPORTED_MODULE_0__[\"Route\"].register(\"/test/vue\", \"VueTest@main\");\n\n//# sourceURL=webpack:///./js/router/routes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("function _defineProperty(obj, key, value) {\n  if (key in obj) {\n    Object.defineProperty(obj, key, {\n      value: value,\n      enumerable: true,\n      configurable: true,\n      writable: true\n    });\n  } else {\n    obj[key] = value;\n  }\n\n  return obj;\n}\n\nmodule.exports = _defineProperty;\n\n//# sourceURL=webpack:///./node_modules/@babel/runtime/helpers/defineProperty.js?");
 
 /***/ })
 

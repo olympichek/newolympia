@@ -44,18 +44,6 @@
 #content .menu-header {
   background-color: #BEBEBE; }
 
-#content .save-main-button, #content .save-sub-button {
-  display: none; }
-
-#content .main-id, #content .sub-id {
-  display: none; }
-
-#content .main-name-input {
-  background-color: #00FF99; }
-
-#content .sub-name-input {
-  background-color: #FFFFCC; }
-
 #content .menu-input, #content .menu-select {
   width: 35%; }
 

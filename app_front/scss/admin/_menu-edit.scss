@@ -5,18 +5,6 @@
   .menu-header {
     background-color: #BEBEBE;
   }
-  .save-main-button, .save-sub-button {
-    display: none;
-  }
-  .main-id, .sub-id {
-    display: none;
-  }
-  .main-name-input {
-    background-color: #00FF99;
-  }
-  .sub-name-input {
-    background-color: #FFFFCC;
-  }
   .menu-input, .menu-select{
     width: 35%;
   }
@@ -24,5 +12,4 @@
     width: 12%;
     overflow: hidden;
   }
-
 }

@@ -35,8 +35,8 @@ Route::middleware("AdminMiddleware", [
     Route::post("/admin/left_menu/sub/add", "admin\LeftMenuController@add_sub_item"),
     Route::post("/admin/left_menu/sub/delete", "admin\LeftMenuController@delete_sub_item"),
     Route::get("/admin/left_menu/ajax/menu", "admin\LeftMenuController@load_menu"),
-    Route::get("/admin/left_menu/ajax/content", "admin\LeftMenuController@load_content"),
-    Route::get("/admin/left_menu/ajax/item/{id}", "admin\LeftMenuController@load_item"),
+    Route::get("/admin/left_menu/load/items", "admin\LeftMenuController@load_items"),
+    Route::get("/admin/left_menu/load/pages", "admin\LeftMenuController@load_pages"),
 
     Route::get("/admin/right_banners/index", "admin\RightBannersController@index"),
     Route::get("/admin/right_banners/edit/{page_name}", "admin\RightBannersController@edit"),

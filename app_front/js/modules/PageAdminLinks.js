@@ -1,4 +1,4 @@
-import {Cookie} from "../services/Cookie";
+import {Cookie} from "Services/Cookie";
 
 export class PageAdminLinks {
 

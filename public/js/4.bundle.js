@@ -1,14 +1,26 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./js/modules/FilesUpload.js":
-/*!***********************************!*\
-  !*** ./js/modules/FilesUpload.js ***!
-  \***********************************/
-/*! exports provided: FilesUpload */
+/***/ "./js/modules/PageAdminLinks.js":
+/*!**************************************!*\
+  !*** ./js/modules/PageAdminLinks.js ***!
+  \**************************************/
+/*! exports provided: PageAdminLinks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"FilesUpload\", function() { return FilesUpload; });\nclass FilesUpload {\n  load() {\n    CKFinder.widget(\"ckfinder1\", {\n      height: 600\n    });\n  }\n\n}\n\n//# sourceURL=webpack:///./js/modules/FilesUpload.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"PageAdminLinks\", function() { return PageAdminLinks; });\n/* harmony import */ var Services_Cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! Services/Cookie */ \"./js/services/Cookie.js\");\n\nclass PageAdminLinks {\n  main() {\n    const create_link = document.getElementById(\"page-create-href\");\n    create_link.addEventListener(\"click\", () => {\n      this.createLinkClicked();\n    });\n    const edit_link = document.getElementById(\"page-edit-href\");\n    edit_link.addEventListener(\"click\", () => {\n      this.editLinkClicked();\n    });\n    const delete_link = document.getElementById(\"page-delete-href\");\n    delete_link.addEventListener(\"click\", () => {\n      this.deleteLinkClicked();\n    });\n  }\n\n  createLinkClicked() {\n    const page_name = document.getElementById(\"create-page-name\").value;\n    const xhr = new XMLHttpRequest();\n    const token = Services_Cookie__WEBPACK_IMPORTED_MODULE_0__[\"Cookie\"].getCookieByName(\"temp_hash\").value;\n    const request = \"name=\" + encodeURIComponent(page_name) + \"&token=\" + encodeURIComponent(token);\n    const check = /^[a-zA-Z0-9_]+$/;\n    const href_value = \"/admin/page_admin/edit/\" + page_name;\n\n    if (page_name.match(check)) {\n      const editWindow = window.open(\"\", \"_blank\");\n      xhr.open(\"POST\", \"/admin/page_admin/create\", true);\n      xhr.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");\n      xhr.send(request);\n\n      xhr.onload = () => {\n        this.reloadEditList();\n        this.reloadDeleteList();\n        editWindow.location.replace(href_value);\n      };\n    } else {\n      window.open(\"/admin/page_admin/create_error\", \"_blank\");\n    }\n  }\n\n  editLinkClicked() {\n    const pages_list = document.getElementById(\"pages-list-edit\");\n    const loading_page = pages_list.value;\n    const href_value = \"/admin/page_admin/edit/\" + loading_page;\n    window.open(href_value, \"_blank\");\n  }\n\n  deleteModalWindow() {}\n\n  deleteLinkClicked() {\n    const pages_list = document.getElementById(\"pages-list-delete\");\n    const page_name = pages_list.value;\n    const xhr = new XMLHttpRequest();\n    const token = Services_Cookie__WEBPACK_IMPORTED_MODULE_0__[\"Cookie\"].getCookieByName(\"temp_hash\").value;\n    const request = \"name=\" + encodeURIComponent(page_name) + \"&token=\" + encodeURIComponent(token);\n    xhr.open(\"POST\", \"/admin/page_admin/delete\", true);\n    xhr.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");\n    xhr.send(request);\n\n    xhr.onload = () => {\n      this.reloadEditList();\n      this.reloadDeleteList();\n    };\n  }\n\n  reloadEditList() {\n    const pages_list_edit = document.getElementById(\"pages-list-edit\");\n    const xhr = new XMLHttpRequest();\n    xhr.open(\"GET\", \"/admin/page_admin/pages_list/edit\", true);\n    xhr.send();\n\n    xhr.onload = () => {\n      pages_list_edit.innerHTML = this.buildList(xhr.responseText);\n    };\n  }\n\n  reloadDeleteList() {\n    const pages_list_delete = document.getElementById(\"pages-list-delete\");\n    const xhr = new XMLHttpRequest();\n    xhr.open(\"GET\", \"/admin/page_admin/pages_list/delete\", true);\n    xhr.send();\n\n    xhr.onload = () => {\n      pages_list_delete.innerHTML = this.buildList(xhr.responseText);\n    };\n  }\n\n  buildList(responseText) {\n    const arr = JSON.parse(responseText);\n    let html = \"\";\n\n    for (let i = 0; i < arr.length; i++) {\n      html += \"<option value=\\\"\".concat(arr[i][0], \"\\\">\").concat(arr[i][1], \"</option>\");\n    }\n\n    return html;\n  }\n\n}\n\n//# sourceURL=webpack:///./js/modules/PageAdminLinks.js?");
+
+/***/ }),
+
+/***/ "./js/services/Cookie.js":
+/*!*******************************!*\
+  !*** ./js/services/Cookie.js ***!
+  \*******************************/
+/*! exports provided: Cookie */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Cookie\", function() { return Cookie; });\nclass Cookie {\n  constructor(cookie_name, cookie_value) {\n    this.cookie_name = cookie_name;\n    this.cookie_value = cookie_value;\n  }\n\n  get name() {\n    return this.cookie_name;\n  }\n\n  get value() {\n    return this.cookie_value;\n  }\n\n  static getCookieByName(cookie_name) {\n    const cookies_string = document.cookie;\n    const cookies_array = cookies_string.split(\";\");\n    let cookie_value = null;\n\n    for (let i = 0; i < cookies_array.length; i++) {\n      let current_cookie_parts = cookies_array[i].split(\"=\");\n      let current_cookie_name = current_cookie_parts[0].trim();\n      let current_cookie_value = current_cookie_parts[1].trim();\n\n      if (current_cookie_name === cookie_name) {\n        cookie_value = current_cookie_value;\n      }\n    }\n\n    return new Cookie(cookie_name, cookie_value);\n  }\n\n}\n\n//# sourceURL=webpack:///./js/services/Cookie.js?");
 
 /***/ })
 

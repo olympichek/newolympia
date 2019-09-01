@@ -22,7 +22,7 @@ gulp.task('img', async function () {
 });
 
 gulp.task('js', async function () {
-    gulp.src('./js/load.js')
+    gulp.src('./js/router/load.js')
         .pipe(webpackStream(webpackConfig))
         .pipe(gulp.dest('../public/js'));
 });

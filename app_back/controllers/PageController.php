@@ -43,7 +43,7 @@ class PageController extends Controller {
     }
 
     function vue_test() {
-        $this->view->generate_page("vue-test", "page");
+        $this->view->generate_page("vue-test", "page", $this->data);
     }
 
 }

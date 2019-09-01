@@ -1,24 +1,16 @@
-import Vue from "Libs/vue/vue.esm.browser.js";
+import Vue from "vue/dist/vue.esm.browser";
+import App from "Components/VueTest/App.vue";
+
+
 export class VueTest {
 
     main() {
-
-        const app = new Vue({
+        new Vue({
             el: "#app",
-            delimiters: ["${","}"],
-            data: {
-                message: "Hello Vue!"
+            render (h) {
+                return h(App)
             }
         });
-
-        Vue.component("button-counter", {
-            data: function () {
-                return {
-                    count: 0
-                }
-            },
-            template: `<button v-on:click="count++">Счётчик кликов — {{ count }}</button>`
-        })
     }
 
 }

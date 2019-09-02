@@ -4,6 +4,8 @@ namespace controllers\admin;
 use core\Controller;
 use models\Banner;
 use models\LeftMenu\Menu;
+use models\LeftMenu\MainItem;
+use models\LeftMenu\SubItem;
 use models\Page;
 
 class LeftMenuController extends Controller {
@@ -30,10 +32,11 @@ class LeftMenuController extends Controller {
         $this->view->generate_json($data);
     }
 
-//    public function load_menu() {
-//        $this->data["menu"] = $this->model_left_menu->load_menu();
-//        $this->view->generate("includes/left_menu", "none", $this->data);
-//    }
+    public function load_menu() {
+        $this->data["menu"] = Menu::load();
+        sleep(2);
+        $this->view->generate_page("includes/left_menu", "none", $this->data);
+    }
 //
 //    public function load_item($args) {
 //        $this->data["item"] = $this->model_left_menu->load_main_item($args["id"]);
@@ -45,9 +48,13 @@ class LeftMenuController extends Controller {
 //        $this->view->generate("admin/left_menu/main", "none", $this->data, "content");
 //    }
 //
-//    public function save_main_item($args) {
-//        $this->model_left_menu_edit->save_main_item($args["id"], $args["page_id"]);
-//    }
+    public function save_main_item($args) {
+        MainItem::get_by_id($args["id"])->save($args["page_id"]);
+    }
+
+    public function save_sub_item($args) {
+        SubItem::get_by_id($args["id"])->save($args["page_id"]);
+    }
 //
 //    public function add_main_item($args) {
 //        $this->model_left_menu_edit->add_main_item($args["after_id"]);
@@ -58,9 +65,7 @@ class LeftMenuController extends Controller {
 //    }
 //
 //
-//    public function save_sub_item($args) {
-//        $this->model_left_menu_edit->save_sub_item($args["id"], $args["page_id"]);
-//    }
+
 //
 //    public function add_sub_item($args) {
 //        $this->model_left_menu_edit->add_sub_item($args["after_id"], $args["parent_id"]);

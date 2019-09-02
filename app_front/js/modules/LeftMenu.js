@@ -14,4 +14,14 @@ export class LeftMenu {
         });
     }
 
+    reload() {
+        const leftMenu = document.querySelector("#left-menu");
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET","/admin/left_menu/ajax/menu",true);
+        xhr.send();
+        xhr.onload = () => {
+            leftMenu.innerHTML = xhr.responseText;
+        }
+    }
+
 }

@@ -14,6 +14,7 @@
 
 <script>
     import {Cookie} from "Services/Cookie";
+    import {LeftMenu} from "Modules/LeftMenu";
     export default {
         name: "SubItem",
         props: ["subItem", "pages"],
@@ -41,6 +42,9 @@
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(data)
                 });
+
+                const menu = new LeftMenu;
+                menu.reload();
             },
             deleteSub() {
 

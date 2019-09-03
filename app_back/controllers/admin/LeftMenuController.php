@@ -34,7 +34,6 @@ class LeftMenuController extends Controller {
 
     public function load_menu() {
         $this->data["menu"] = Menu::load();
-        sleep(2);
         $this->view->generate_page("includes/left_menu", "none", $this->data);
     }
 //

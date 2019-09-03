@@ -16,6 +16,7 @@ export class LeftMenu {
 
     reload() {
         const leftMenu = document.querySelector("#left-menu");
+        leftMenu.innerHTML = `<div class="loading-image"></div>`;
         const xhr = new XMLHttpRequest();
         xhr.open("GET","/admin/left_menu/ajax/menu",true);
         xhr.send();

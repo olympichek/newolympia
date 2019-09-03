@@ -49,7 +49,7 @@
             deleteMain() {
 
             },
-            changeMainSelect() {
+            changeMainSelect(event) {
                 const selectList = event.target;
                 const nameRus = selectList.options[selectList.selectedIndex].text;
                 this.mainItem['page_id'] = selectList.value;

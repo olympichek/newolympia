@@ -49,7 +49,7 @@
             deleteSub() {
                 this.$emit("deleteSub", this.subItem['id']);
             },
-            changeSubSelect() {
+            changeSubSelect(event) {
                 const selectList = event.target;
                 const nameRus = selectList.options[selectList.selectedIndex].text;
                 this.subItem['page_id'] = selectList.value;

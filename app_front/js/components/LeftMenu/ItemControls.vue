@@ -1,6 +1,6 @@
 <template>
     <div class="add-sub-item">
-        <button class="add-sub-button">Добавить подпункт</button>
+        <button class="add-sub-button" v-on:click="addSub">Добавить подпункт</button>
         <span> после </span>
         <select v-model="selected" class="sub-items-list menu-select">
             <option value="0">
@@ -9,7 +9,7 @@
             <option
                 v-for="(subItem, index) in fullItem"
                 v-if="index !== 0"
-                v-bind:value="subItem['id']"
+                v-bind:value="subItem['order_id']"
             >
                 {{ subItem["name_russian"] }}
             </option>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+    import {Cookie} from "Services/Cookie";
+    import {LeftMenu} from "Modules/LeftMenu";
     export default {
         name: "ItemControls",
         props: ["fullItem"],
@@ -26,9 +28,17 @@
                 selected: 0
             }
         },
-        mounted() {
-            if(this.fullItem.length > 1) {
-                this.selected =  +this.fullItem[this.fullItem.length - 1]['id'];
+        created() {
+            this.selectedReset();
+        },
+        methods: {
+            async addSub() {
+                this.$emit("addSub", this.selected);
+            },
+            selectedReset() {
+                if(this.fullItem.length > 1) {
+                    this.selected = +this.fullItem[this.fullItem.length - 1]['order_id'];
+                }
             }
         }
     }

@@ -40,7 +40,7 @@ export class PageEditor {
     submit(pageName) {
         const editorData = this.editor.getData();
         const pageNameRus = document.querySelector("#name-russian-input").value.trim();
-        const token = Cookie.getCookieByName("temp_hash").value;
+        const token = Cookie.getByName("temp_hash").value;
         const requestObj = {
             "page_name": pageName,
             "page_name_rus": pageNameRus,

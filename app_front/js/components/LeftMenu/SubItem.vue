@@ -34,7 +34,7 @@
                 const data = {
                     id: this.subItem['id'],
                     page_id: this.subItem['page_id'],
-                    token: Cookie.getCookieByName("temp_hash").value
+                    token: Cookie.getByName("temp_hash").value
                 };
                 await fetch(url, {
                     method: "POST",
@@ -47,7 +47,7 @@
                 menu.reload();
             },
             deleteSub() {
-
+                this.$emit("deleteSub", this.subItem['id']);
             },
             changeSubSelect() {
                 const selectList = event.target;

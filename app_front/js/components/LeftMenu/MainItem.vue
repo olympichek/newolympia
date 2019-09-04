@@ -34,7 +34,7 @@
                 const data = {
                     id: this.mainItem['id'],
                     page_id: this.mainItem['page_id'],
-                    token: Cookie.getCookieByName("temp_hash").value
+                    token: Cookie.getByName("temp_hash").value
                 };
                 await fetch(url, {
                     method: "POST",
@@ -47,7 +47,7 @@
                 menu.reload();
             },
             deleteMain() {
-
+                this.$emit("deleteMain", this.mainItem['id']);
             },
             changeMainSelect() {
                 const selectList = event.target;

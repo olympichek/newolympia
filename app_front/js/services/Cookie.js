@@ -13,7 +13,7 @@ export class Cookie {
         return this.cookie_value;
     }
 
-    static getCookieByName(cookie_name) {
+    static getByName(cookie_name) {
         const cookies_string = document.cookie;
         const cookies_array = cookies_string.split(";");
         let cookie_value = null;

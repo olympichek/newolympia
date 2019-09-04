@@ -54,6 +54,16 @@ class LeftMenuController extends Controller {
     public function save_sub_item($args) {
         SubItem::get_by_id($args["id"])->save($args["page_id"]);
     }
+
+    public function add_sub_item($args) {
+        $sub_item = SubItem::add($args["after_id"], $args["parent_id"])->load();
+        $main_item = MainItem::get_by_id($sub_item["parent_id"])->load();
+        $this->view->generate_json($main_item);
+    }
+
+    public function delete_sub_item($args) {
+        SubItem::get_by_id($args["id"])->delete();
+    }
 //
 //    public function add_main_item($args) {
 //        $this->model_left_menu_edit->add_main_item($args["after_id"]);

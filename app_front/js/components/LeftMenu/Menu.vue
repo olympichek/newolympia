@@ -37,7 +37,7 @@
                 selected: 1,
             }
         },
-        async mounted() {
+        async created() {
             let url = "/admin/left_menu/load/items";
             let response = await fetch(url);
             this.items = await response.json();

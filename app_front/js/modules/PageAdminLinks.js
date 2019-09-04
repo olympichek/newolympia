@@ -16,7 +16,7 @@ export class PageAdminLinks {
     createLinkClicked() {
         const page_name = document.getElementById("create-page-name").value;
         const xhr = new XMLHttpRequest();
-        const token = Cookie.getCookieByName("temp_hash").value;
+        const token = Cookie.getByName("temp_hash").value;
         const request = "name=" + encodeURIComponent(page_name) + "&token=" + encodeURIComponent(token);
         const check = /^[a-zA-Z0-9_]+$/;
         const href_value = "/admin/page_admin/edit/" + page_name;
@@ -51,7 +51,7 @@ export class PageAdminLinks {
         const pages_list = document.getElementById("pages-list-delete");
         const page_name = pages_list.value;
         const xhr = new XMLHttpRequest();
-        const token = Cookie.getCookieByName("temp_hash").value;
+        const token = Cookie.getByName("temp_hash").value;
         const request = "name=" + encodeURIComponent(page_name) + "&token=" + encodeURIComponent(token);
         xhr.open("POST", "/admin/page_admin/delete",true);
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
